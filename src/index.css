@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.4);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Custom Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-alt {
+  background: linear-gradient(135deg, #c084fc 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Text selections */
+::selection {
+  background-color: rgba(139, 92, 246, 0.3);
+}
+
+
+
+/* Robot video: remove white background via blend mode */
+.robot-video {
+  mix-blend-mode: multiply; /* white becomes transparent on light bg */
+}
+.dark .robot-video {
+  mix-blend-mode: screen; /* white stays visible, black becomes transparent on dark bg */
+}
+
+/* Completely suppress all browser-native video overlay controls */
+.robot-video::-webkit-media-controls,
+.robot-video::-webkit-media-controls-enclosure,
+.robot-video::-webkit-media-controls-overlay-play-button,
+.robot-video::-webkit-media-controls-panel,
+.robot-video::-webkit-media-controls-play-button,
+.robot-video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ── Robot animations ─────────────────────────────── */
+
+/* Float + waving tilt */
+@keyframes robot-wave {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  20%  { transform: translateY(-8px) rotate(-8deg); }
+  35%  { transform: translateY(-14px) rotate(10deg); }
+  50%  { transform: translateY(-14px) rotate(-8deg); }
+  65%  { transform: translateY(-8px) rotate(6deg); }
+  80%  { transform: translateY(-3px) rotate(-2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+.animate-robot-wave {
+  animation: robot-wave 2.6s ease-in-out infinite;
+}
+
+/* Waving Hand Emoji Animation */
+@keyframes hand-wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(18deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(18deg); }
+}
+.animate-hand-wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: hand-wave 1.4s ease-in-out infinite;
+}
+
+/* Float + subtle tilt */
+@keyframes robot-float {
+  0%   { transform: translateY(0px)   rotate(0deg); }
+  25%  { transform: translateY(-10px) rotate(1.2deg); }
+  50%  { transform: translateY(-16px) rotate(0deg); }
+  75%  { transform: translateY(-10px) rotate(-1.2deg); }
+  100% { transform: translateY(0px)   rotate(0deg); }
+}
+.animate-robot-float {
+  animation: robot-float 3.2s ease-in-out infinite;
+}
+
+/* Ring 1 — large, slow, rotates */
+@keyframes robot-ring-1 {
+  0%   { transform: scale(0.9) rotate(0deg);   opacity: 0.7; }
+  50%  { transform: scale(1.06) rotate(180deg); opacity: 0.25; }
+  100% { transform: scale(0.9) rotate(360deg); opacity: 0.7; }
+}
+.animate-robot-ring-1 {
+  animation: robot-ring-1 6s linear infinite;
+}
+
+/* Ring 2 — medium, counter-rotate */
+@keyframes robot-ring-2 {
+  0%   { transform: scale(1.05) rotate(0deg);   opacity: 0.5; }
+  50%  { transform: scale(0.88) rotate(-180deg); opacity: 0.15; }
+  100% { transform: scale(1.05) rotate(-360deg); opacity: 0.5; }
+}
+.animate-robot-ring-2 {
+  animation: robot-ring-2 4.5s linear infinite;
+}
+
+/* Ring 3 — small, fast pulse */
+@keyframes robot-ring-3 {
+  0%, 100% { transform: scale(0.92); opacity: 0.6; }
+  50%       { transform: scale(1.10); opacity: 0.15; }
+}
+.animate-robot-ring-3 {
+  animation: robot-ring-3 2s ease-in-out infinite;
+}
+
+/* Aura glow — breathes */
+@keyframes robot-aura {
+  0%, 100% { opacity: 0.4; transform: scale(0.95); }
+  50%       { opacity: 0.8; transform: scale(1.1); }
+}
+.animate-robot-aura {
+  animation: robot-aura 2.6s ease-in-out infinite;
+}
+
+/* Orbiting dot 1 — 4s, radius ~88px */
+@keyframes orbit-1 {
+  from { transform: rotate(0deg)   translateX(88px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(88px) rotate(-360deg); }
+}
+.animate-orbit-1 { animation: orbit-1 4s linear infinite; }
+
+/* Orbiting dot 2 — 6s opposite, radius ~68px */
+@keyframes orbit-2 {
+  from { transform: rotate(120deg)  translateX(68px) rotate(-120deg); }
+  to   { transform: rotate(480deg)  translateX(68px) rotate(-480deg); }
+}
+.animate-orbit-2 { animation: orbit-2 6s linear infinite; }
+
+/* Orbiting dot 3 — 3s, radius ~50px */
+@keyframes orbit-3 {
+  from { transform: rotate(240deg)  translateX(50px) rotate(-240deg); }
+  to   { transform: rotate(600deg)  translateX(50px) rotate(-600deg); }
+}
+.animate-orbit-3 { animation: orbit-3 3s linear infinite; }
+
+/* Ground shadow synced with float */
+@keyframes robot-shadow {
+  0%, 100% { transform: translateX(-50%) scaleX(1);    opacity: 0.45; }
+  50%       { transform: translateX(-50%) scaleX(0.6);  opacity: 0.15; }
+}
+.animate-robot-shadow {
+  animation: robot-shadow 3.2s ease-in-out infinite;
+}
